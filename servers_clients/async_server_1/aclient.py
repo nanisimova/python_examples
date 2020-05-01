@@ -15,7 +15,6 @@ async def client(message):
     data = await reader.read(1024)
 
     print(data.decode())
-#    print(f'Received: {data.decode()!r}')
     writer.close()
 
 async def main():

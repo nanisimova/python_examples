@@ -12,7 +12,6 @@ s.listen(1)
 try:
     while True:
         conn, addr = s.accept()
-        data = conn.recv(1024)
 
         f = open("rocket.jpg", "rb")
         content = f.read()
@@ -20,7 +19,6 @@ try:
 
         response = '''HTTP/1.1 200 OK
 Content-Type: image/jpeg
-Connection: Closed
 
 '''.encode() + content
 

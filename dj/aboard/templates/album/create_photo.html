@@ -1,0 +1,6 @@
+<h2>Создать фото</h2>
+<form action="/catalog/update/{{ item_id }}/photo/create" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>

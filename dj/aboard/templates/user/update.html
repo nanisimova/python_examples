@@ -1,0 +1,10 @@
+{% include "header.html" %}
+<h2>Профиль пользователя</h2>
+
+<form action="/user/update" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% include "footer.html" %}

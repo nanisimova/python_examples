@@ -1,0 +1,14 @@
+{% include "header.html" %}
+
+<h2>Изменить данные объекта</h2>
+
+<p>{{ error }}</p>
+
+<form action="/catalog/update/{{ item_id }}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% include "footer.html" %}
+

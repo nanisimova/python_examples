@@ -1,0 +1,10 @@
+{% include "header.html" %}
+<p>Привет! Это главная страница!</p>
+
+<p><a href="/catalog/list">Каталог объектов</a></p>
+
+{% if request.user.is_authenticated %}
+<p><a href="/catalog/create">Добавить новый объект в каталог</a></p>
+{% endif %}
+
+{% include "footer.html" %}

@@ -1,0 +1,17 @@
+{% include "header.html" %}
+
+<h2>Объект {{ item.2 }}</h2>
+<p>
+{{ item.0 }} | {{ item.1 }} | {{ item.2 }} | {{ item.3 }}
+{{ item.4 }} | {{ item.5 }} | {{ item.6 }} | {{ item.7 }}
+</p>
+
+<p><a href="/catalog/update/{{ item.0 }}">Изменить данные объекта</a></p>
+<p><a href="/catalog/update/{{ item.0 }}/photo/create">Добавить фото</a></p>
+
+{% for photo in photos %}
+<p><img src="{{ photo.image.url }}" width="150"><br>
+<a href="/catalog/update/{{ item.0 }}/photo/delete/{{ photo.id }}">удалить фото</a></p>
+{% endfor %}
+
+{% include "footer.html" %}

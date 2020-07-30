@@ -1,0 +1,15 @@
+{% include "header.html" %}
+
+<h2>Каталог объектов</h2>
+
+{% for item in items %}
+<p>
+{{ item.0 }} {{ item.1 }} {{ item.2 }} {{ item.3 }}
+<br>
+<a href="/catalog/update/{{ item.0 }}">Изменить</a> | 
+<a href="/catalog/delete/{{ item.0 }}">Удалить</a> | 
+<a href="/catalog/view/{{ item.0 }}">Просмотреть</a>
+</p>
+{% endfor %}
+
+{% include "footer.html" %}

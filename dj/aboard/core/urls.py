@@ -9,8 +9,7 @@ from user import views as user_views
 from authentication import views as auth_views
 from catalog import views as catalog_views
 from album import views as album_views
-
-from core.views import main
+from core import views as core_views
 
 def icon(request):
     return FileResponse(open('favicon.ico', 'rb'))
@@ -41,7 +40,10 @@ urlpatterns = [
     url(r'^catalog/list/(?P<offset>\d+)$', catalog_views.view_catalog),
     url(r'^catalog/list$', catalog_views.view_catalog),
 
+    url(r'^search', core_views.search),
+
     url(r'^favicon.ico$', icon),
-    url(r'^', main),
-    url(r'^/', main),
+    url(r'^', core_views.main),
+    url(r'^/', core_views.main),
+
 ]

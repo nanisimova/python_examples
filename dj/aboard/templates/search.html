@@ -1,0 +1,16 @@
+{% include "header.html" %}
+
+{% include "search_form.html" %}
+
+{# items #}
+
+{% for item in items.matches %}
+<p>{{ item.attrs.name }}<br>
+{{ item.attrs.description }}<br>
+
+<a href="/catalog/view/{{ item.attrs.sid }}">Просмотреть объект</a>
+</p>
+{% endfor %}
+
+
+{% include "footer.html" %}

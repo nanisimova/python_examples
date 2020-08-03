@@ -1,0 +1,52 @@
+# Блок source содержит описание источника данных для нашего индекса, параметров
+# доступа к ним, атрибутов и правил их анализа.
+source src1
+{
+    type = mysql
+    # Параметры подключения к БД
+    sql_host = 192.168.102.35
+    sql_user = test
+    sql_pass = test
+    sql_db = dj_aboard
+    sql_port = 3306 # optional, default is 3306
+
+    sql_query_pre = SET NAMES utf8 COLLATE utf8_unicode_ci
+    # запрос который возвращает данные для индексации
+    sql_query = SELECT id, id AS 'sid', name, description, user_id FROM catalog_catalog
+
+    sql_attr_uint = sid
+    sql_field_string = name
+    sql_field_string = description
+    sql_attr_uint = user_id
+}
+
+# Блок index содержит настройки построения индекса с использованием источника.
+index test1
+{
+    source = src1
+    path = /var/lib/sphinxsearch/data/test1
+    docinfo = extern
+}
+
+# Блок indexer содержит настройки индексатора
+indexer
+{
+    mem_limit = 128M
+}
+
+# Блок searchd содержит порты и переменные для запуска демона Sphinx
+searchd
+{
+    listen = 9312 # порт для работы через API
+    listen = 9306:mysql41 # порт для комуникаций с MySQL
+    log = /var/log/sphinxsearch/searchd.log
+    query_log = /var/log/sphinxsearch/query.log
+    read_timeout = 5
+    max_children = 30
+    pid_file = /var/log/sphinxsearch/searchd.pid
+    seamless_rotate = 1
+    preopen_indexes = 1
+    unlink_old = 1
+    workers = threads # for RT to work
+}
+

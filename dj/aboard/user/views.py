@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 
 from user.forms import UserUpdateForm
 from catalog.models import Catalog
+from user.tasks import send_email_registration
 
 # Создание пользователя, просмотр профиля, обновление, удаление и смена пароля
 
@@ -19,6 +20,7 @@ def create(request):
 
             if password1 == password2:
                 user = User.objects.create_user(username, password=password1)
+                send_email_registration()
                 return HttpResponseRedirect('/')
 
     form = UserCreationForm()

@@ -67,3 +67,10 @@ TEMPLATES = [
         },
     },
 ]
+
+# celery
+BROKER_URL = 'redis://guest:password@192.168.102.2:6379/0'
+CELERY_RESULT_BACKEND = 'redis://guest:password@192.168.102.2:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'

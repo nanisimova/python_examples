@@ -8,6 +8,7 @@ from django.views.static import serve
 from user import views as user_views
 from authentication import views as auth_views
 from catalog import views as catalog_views
+from catalog.api import views as catalog_api_views
 from album import views as album_views
 from core import views as core_views
 
@@ -39,6 +40,7 @@ urlpatterns = [
 
     url(r'^catalog/list/(?P<offset>\d+)$', catalog_views.view_catalog),
     url(r'^catalog/list$', catalog_views.view_catalog),
+    url(r'^api/catalog$', catalog_api_views.CatalogListView.as_view()),
 
     url(r'^search', core_views.search),
 
